@@ -1,0 +1,2 @@
+export const dashboard = { totalProjects: 3, activeProjects: 2, delayedProjects: 1, completedTasks: 8, overdueTasks: 6, blockedTasks: 4, healthScore: 72, upcomingMilestones: 5, aiSummary: "ERP Modernization is at risk due to overdue critical tasks and blocked dependencies." };
+export const nav = ["Dashboard","Projects","Tasks","Boards","Reports","Agent Inbox","Clients","Integrations","Settings","Admin"];
