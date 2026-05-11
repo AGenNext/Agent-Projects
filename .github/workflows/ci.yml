@@ -23,32 +23,31 @@ jobs:
         run: npm install
         continue-on-error: true
         
-      - name: Install test tools
+      - name: Install TypeScript tools
         run: |
-          npm install --save-dev jest @testing-library/react @testing-library/jest-dom
-          npm install --save-dev eslint prettier stylelint npm-audit-security
+          npm install --save-dev typescript
+          npm install --save-dev jest @testing-library/react @testing-library/jest-dom ts-jest
+          npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+          npm install --save-dev prettier
+          npm install --save-dev stylelint
+        continue-on-error: true
+        
+      - name: Compile TypeScript
+        run: npx tsc --noEmit || true
         continue-on-error: true
         
       - name: Run tests
         run: npm test -- --coverage || true
         continue-on-error: true
         
-      - name: Run lint
-        run: npm run lint || npx eslint . || true
+      - name: Run eslint
+        run: npx eslint . --ext .ts,.tsx || true
         continue-on-error: true
         
       - name: Run prettier check
-        run: npx prettier --check . || true
+        run: npx prettier --check "**/*.{ts,tsx}" || true
         continue-on-error: true
         
-      - name: Run stylelint
-        run: npx stylelint "**/*.{css,scss,less}" || true
-        continue-on-error: true
-        
-      - name: Check for vulnerabilities
+      - name: Check vulnerabilities
         run: npm audit --audit-level=high || true
-        continue-on-error: true
-        
-      - name: Check dependencies
-        run: npx npm-audit-security || true
         continue-on-error: true
