@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  ci:
+    uses: AGenNext/AGenNext-CodeReview/.github/workflows/reusable-ci.yml@main
+    with:
+      language: typescript
